@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Krona+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-/* criar variáveis que recebem informações que agt repete muitas vezes ao longo do código, como a cor */
+/* criar variáveis que recebem informações que se repetem muitas vezes ao longo do código, como a cor */
 :root {
     --cor-primaria:  #E7E7E7;
     --cor-secundaria: #e7e7e705;
@@ -26,6 +26,8 @@ body {
     color: var(--cor-secundaria);
 }
 
+/* quando usamos uma classe - chamar ela por um ponto + nome da classe (que fará parte do HTML tbm)  */
+/* uma TAG tem uma CLASSE específica - agrupamento de tipos */
 .cabecalho {
     padding: 2% 0% 0% 15%;
 }
@@ -37,70 +39,46 @@ body {
 
 .cabecalho__menu__link {
     font-family: var(--fonte-secundaria);
-    font-size: 24px;
+    /* font-size: 24px; */
+    font-size: 1.5rem;
     font-weight: 600;
     color: var(--cor-terciaria);
     text-decoration: none;
 }
 
-h1 {
-    color: #6C5F5B;
-}
-
-a {
-    color: white;
-}
-
-p {
-    color: darkgray;
-}
-
-.texto-destaque {
-    color:var(--cor-terciaria);
-}
-
-span{
-    color:var(--cor-terciaria);
-    border: 1px solid #ED7D31;
-    padding: 10px;
-}
-
-/*
-footer {
-    background-color: gray;
-    color: white;
-}
-*/
-
 /* crio uma classe para configurar a diposição dos conteúdos em colunas - insiro ela lá no HTML - trago para o CSS para configurar - usando flex box  */
 .apresentacao {
     /* margin: 10%; */
-    padding: 6% 15%;
+    padding: 5% 15%;
     display: flex; /* cria um contêiner flex - ou seja, o flexbox */
     align-items: center; /* alinha de acordo com o centro do elemento mais alto - propriedade do flexbox */ 
     justify-content: space-between; /* concede espaço entre os elementos da página - propriedade do flexbox */
+    gap: 82px; /* inserindo um gap entre os elementos filhos para garantir um espaçamento entre eles, conforme a tela do dispositivo for diminuindo - inserir na classe pai */ 
 }
 
 .apresentacao__conteudo {
-    width: 615px;
+    /* width: 615px; */
+    width: 50%;  /* %: largura acompanhar o padding de .apresentacao em dispositivos menores - passar um valor, em @media, para que essa tag filho acompanhe o pai*/
     display: flex;
     flex-direction: column;
     gap: 40px; /* espaçamento vertical entre conteúdos, nesse caso, dentro do flexbox direction */
 }
 
 .apresentacao__conteudo__titulo {
-    font-size: 36px;
+    /* para transformar em medida responsiva, o REM, por exemplo: dividir o valor em px por 16 */
+    /* font-size: 36px; */
+    font-size: 2.25rem;
+    color: #6C5F5B;
     font-family: var(--fonte-primaria);
 }
 
-/* quando usamos uma classe - chamar ela por um ponto + nome da classe (que fará parte do HTML tbm)  */
-/* uma TAG tem uma CLASSE específica - agrupamento de tipos */
 .titulo-destaque {
     color: var(--cor-terciaria);
 }
 
 .apresentacao__conteudo__texto {
-    font-size: 24px;
+    color: darkgray;
+    font-size: 1.5rem;
     font-family: var(--fonte-secundaria);
 }
 
@@ -112,22 +90,23 @@ footer {
     gap: 32px;
 }
 
-.apresentacao_links_subtitulo {
+.apresentacao__links__subtitulo {
+    color: #6C5F5B;
     font-family: var(--fonte-primaria);
     font-weight: 400;
-    font-size: 16px;
-    color: #6C5F5B;
+    font-size: 1rem;
 }
 
 .apresentacao__links__link {
     display: flex;
     justify-content: center;
     gap: 16px;
-    border: 2px solid #ED7D31;
-    width: 378px;
+    border: 2px solid var(--cor-terciaria);
+    /* width: 378px; */
+    width: 50%;
     text-align: center;
     border-radius: 8px;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 600;
     padding: 21.5px 0;
     text-decoration: none;
@@ -138,12 +117,36 @@ footer {
     background-color:var(--cor-hover);
 }
 
+.apresentacao__imagem {
+    /* porcentagem utilizada na imagem para torná-la responsiva */
+    width: 50%;
+}
+
 .rodape {
-    padding: 22px;;
+    color: var(--cor-primaria);
     background-color: #6C5F5B;
+    padding: 22px;;
     text-align: center;
     font-family: var(--fonte-secundaria);
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 400;
+}
 
+/* criando uma condição de verificação do tamamho da tela - ajustar disposição dos elementos - até o tamanho em () são utilizados os estilos definidos pelas chaves {} - dentro das chaves: retomar uma classe que já foi definida e reconfigurá-la */
+@media (max-width: 1200px) {
+    .cabecalho {
+        padding: 10%;
+    }
+
+    .cabecalho__menu {
+        justify-content: center;
+    }
+    
+    .apresentacao{
+        flex-direction: column-reverse;
+    }
+
+    .apresentacao__conteudo {
+        width: auto;
+    }
 }
